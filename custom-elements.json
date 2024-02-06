@@ -1,0 +1,1260 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "wbl-app",
+      "path": "./src\\components\\app\\index.ts",
+      "description": "Wraps wbl-theme and wbl-error-boundary",
+      "attributes": [
+        {
+          "name": "theme",
+          "type": "ThemeName",
+          "default": "\"vaillant\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "type": "ThemeName",
+          "default": "\"vaillant\""
+        }
+      ]
+    },
+    {
+      "name": "wbl-backdrop",
+      "path": "./src\\components\\backdrop\\index.ts",
+      "description": "Provides a canvas for elements that expands edge to edge in a mobile view",
+      "attributes": [
+        {
+          "name": "overlineHeading",
+          "description": "The label of the field",
+          "type": "string | undefined",
+          "default": "\"undefined\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "overlineHeading",
+          "attribute": "overlineHeading",
+          "description": "The label of the field",
+          "type": "string | undefined",
+          "default": "\"undefined\""
+        },
+        {
+          "name": "styles",
+          "type": "CSSResultGroup | undefined",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Appears between header and footer"
+        },
+        {
+          "name": "header",
+          "description": "Appears beneath any overlineHeading provided"
+        },
+        {
+          "name": "footer",
+          "description": "Appears beneath the main slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "board",
+          "description": "The element wrapper"
+        }
+      ]
+    },
+    {
+      "name": "wbl-card",
+      "path": "./src\\components\\card\\index.ts",
+      "description": "Common element container\r\nUseful for bringing elements to the fore",
+      "attributes": [
+        {
+          "name": "context",
+          "description": "The label of the field",
+          "type": "\"base\" | \"brand\" | \"form\" | \"action\" | \"glassLight\" | \"glassDark\" | undefined"
+        },
+        {
+          "name": "interactive",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "context",
+          "attribute": "context",
+          "description": "The label of the field",
+          "type": "\"base\" | \"brand\" | \"form\" | \"action\" | \"glassLight\" | \"glassDark\" | undefined"
+        },
+        {
+          "name": "interactive",
+          "attribute": "interactive",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"hostDefaultStyle\",null,null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Main"
+        },
+        {
+          "name": "image",
+          "description": "An to be included, accessible with ::part(image)"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "card",
+          "description": "Outer wrapper"
+        },
+        {
+          "name": "image",
+          "description": "Image if included"
+        },
+        {
+          "name": "contents",
+          "description": "Contents, useful for adjusting padding"
+        }
+      ]
+    },
+    {
+      "name": "wbl-error-boundary",
+      "path": "./src\\components\\error-boundary\\index.ts",
+      "description": "Catches global errors or uncaught local errors that bubbled.\r\n\r\nFor global errors, canDismiss=false in the error event will prevent the dialog box being dismissed, useful for 500 errors\r\n\r\n---\r\n\r\nTODO Uses a dialog box unsupported by Safari 15.3, we might consider an `alert` here",
+      "properties": [
+        {
+          "name": "error",
+          "type": "{ message: string; details?: string[] | undefined; } | { message: string; details?: string[] | undefined; canDismiss: boolean; } | undefined",
+          "default": "\"undefined\""
+        },
+        {
+          "name": "dispatchError",
+          "type": "boolean",
+          "default": "\"dispatchError\""
+        },
+        {
+          "name": "styles",
+          "type": "CSSResultGroup | undefined",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "wbl-error",
+      "path": "./src\\components\\error\\index.ts",
+      "description": "Displays an error\r\n\r\nAccepts either list of errors as an attribute or contents via a slot",
+      "attributes": [
+        {
+          "name": "list",
+          "type": "string[] | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "list",
+          "attribute": "list",
+          "type": "string[] | undefined"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "wbl-field",
+      "path": "./src\\components\\field\\index.ts",
+      "attributes": [
+        {
+          "name": "label",
+          "description": "The label of the field",
+          "type": "string | undefined"
+        },
+        {
+          "name": "skipError",
+          "description": "The label of the field",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "icon",
+          "description": "The label of the field",
+          "type": "\"activity\" | \"airplay\" | \"alert-circle\" | \"alert-octagon\" | \"alert-triangle\" | \"align-center\" | \"align-justify\" | \"align-left\" | \"align-right\" | \"anchor\" | \"aperture\" | \"archive\" | ... 276 more ... | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "description": "The label of the field",
+          "type": "string | undefined"
+        },
+        {
+          "name": "skipError",
+          "attribute": "skipError",
+          "description": "The label of the field",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "element",
+          "type": "ValidElement | undefined"
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "error",
+          "type": "{ error: string; origin: string | null; }[] | undefined"
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "description": "The label of the field",
+          "type": "\"activity\" | \"airplay\" | \"alert-circle\" | \"alert-octagon\" | \"alert-triangle\" | \"align-center\" | \"align-justify\" | \"align-left\" | \"align-right\" | \"anchor\" | \"aperture\" | \"archive\" | ... 276 more ... | undefined"
+        },
+        {
+          "name": "dispatchError",
+          "type": "(element: ValidElement, error: string | string[]) => void",
+          "default": "\"(element: ValidElement, error: string | string[]) => {\\r\\n    element.dispatchEvent(\\r\\n      new CustomEvent<ErrorDetail>(\\\"wbl-error\\\", {\\r\\n        bubbles: true,\\r\\n        composed: true,\\r\\n        detail: { error },\\r\\n      })\\r\\n    );\\r\\n  }\""
+        },
+        {
+          "name": "dispatchErrorDismiss",
+          "type": "(...elements: ValidElement[]) => void",
+          "default": "\"(...elements: ValidElement[]) => {\\r\\n    elements.forEach((element) =>\\r\\n      element.dispatchEvent(\\r\\n        new CustomEvent<ErrorDetail>(\\\"wbl-error-dismiss\\\", {\\r\\n          bubbles: true,\\r\\n          composed: true,\\r\\n        })\\r\\n      )\\r\\n    );\\r\\n  }\""
+        }
+      ],
+      "events": [
+        {
+          "name": "wbl-error"
+        },
+        {
+          "name": "wbl-error-dismiss"
+        },
+        {
+          "name": "change"
+        }
+      ]
+    },
+    {
+      "name": "wbl-heading-overline",
+      "path": "./src\\components\\heading-overline\\index.ts",
+      "description": "Overlines sit above headers\r\n\r\nThe name was chosen based upon [this site](https://english.stackexchange.com/questions/353869/is-there-an-official-name-for-a-heading-prefix-or-qualifier)",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult[]",
+          "default": "[null]"
+        }
+      ]
+    },
+    {
+      "name": "wbl-heading",
+      "path": "./src\\components\\heading\\index.ts",
+      "description": "Heading elements, equivalent to h1,h2,h3\r\n\r\nThree sizes are provided, it's important not to use [too many sizes](https://uxplanet.org/10-tips-on-typography-in-web-design-13a378f4aa0d)",
+      "attributes": [
+        {
+          "name": "size",
+          "description": "The size of the heading",
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "default": "\"medium\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "size",
+          "attribute": "size",
+          "description": "The size of the heading",
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "default": "\"medium\""
+        },
+        {
+          "name": "styles",
+          "type": "CSSResult[]",
+          "default": "[null]"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "heading",
+          "description": "The `h{1,2,3}` element itself"
+        }
+      ]
+    },
+    {
+      "name": "wbl-hero-header",
+      "path": "./src\\components\\hero-header\\index.ts",
+      "description": "A hero header, commonly used at the top of a page\r\n\r\n---\r\n\r\nNB The term “hero” was first used in the world of theater and it was the prop (it’s usually called the hero prop) that is more detailed than usual because it’s meant to be seen or viewed in close range. One good example of a hero prop is the DeLorean Time Machine from the film franchise “Back to the Future”.",
+      "attributes": [
+        {
+          "name": "backgroundUrl",
+          "description": "The url for the background image",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "height",
+          "description": "The div's height",
+          "type": "string",
+          "default": "\"100%\""
+        },
+        {
+          "name": "underlay",
+          "description": "Does the div underlay it's content (appear behind)\r\nWhen so, it is recommended to exclude slot content when so",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "backgroundUrl",
+          "attribute": "backgroundUrl",
+          "description": "The url for the background image",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "height",
+          "attribute": "height",
+          "description": "The div's height",
+          "type": "string",
+          "default": "\"100%\""
+        },
+        {
+          "name": "underlay",
+          "attribute": "underlay",
+          "description": "Does the div underlay it's content (appear behind)\r\nWhen so, it is recommended to exclude slot content when so",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "CSSResult[]",
+          "default": "[\"hostDefaultStyle\",null,null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "header",
+          "description": "The hero-header content"
+        }
+      ]
+    },
+    {
+      "name": "wbl-label",
+      "path": "./src\\components\\label\\index.ts",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "deprecated": true
+    },
+    {
+      "name": "wbl-nav-bar",
+      "path": "./src\\components\\nav-bar\\index.ts",
+      "description": "The page nav bar, commonly used at the top of the page for navigation\r\nUsage: Sits at the very top of each page",
+      "attributes": [
+        {
+          "name": "logoUrl",
+          "type": "string | undefined"
+        },
+        {
+          "name": "logoHref",
+          "type": "string",
+          "default": "\"/\""
+        },
+        {
+          "name": "sticky",
+          "description": "Will the nav-bar stick to the top of the window on scroll",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "centerLogo",
+          "type": "boolean | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "logoUrl",
+          "attribute": "logoUrl",
+          "type": "string | undefined"
+        },
+        {
+          "name": "logoHref",
+          "attribute": "logoHref",
+          "type": "string",
+          "default": "\"/\""
+        },
+        {
+          "name": "wrapperRef",
+          "type": "Ref<HTMLElement>",
+          "default": "\"createRef()\""
+        },
+        {
+          "name": "slotContents",
+          "type": "Ref<HTMLSlotElement>",
+          "default": "\"createRef()\""
+        },
+        {
+          "name": "sticky",
+          "attribute": "sticky",
+          "description": "Will the nav-bar stick to the top of the window on scroll",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "centerLogo",
+          "attribute": "centerLogo",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "isScrolled",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "CSSResult[]",
+          "default": "[\"hostDefaultStyle\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "left",
+          "description": "Appears left of the logo"
+        },
+        {
+          "name": "right",
+          "description": "Appears Right of the logo"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "logo",
+          "description": "The `a` that contains the logo"
+        }
+      ]
+    },
+    {
+      "name": "wbl-progress-indicator",
+      "path": "./src\\components\\progress-indicator\\index.ts",
+      "description": "Indicates progress through a stepped process such as a multi-page form",
+      "attributes": [
+        {
+          "name": "progress",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "divisions",
+          "type": "number | undefined",
+          "default": "10"
+        }
+      ],
+      "properties": [
+        {
+          "name": "progress",
+          "attribute": "progress",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "divisions",
+          "attribute": "divisions",
+          "type": "number | undefined",
+          "default": "10"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "header",
+          "description": "The header containing progress bar"
+        }
+      ]
+    },
+    {
+      "name": "wbl-field-error-reveal",
+      "path": "./src\\components\\reveal\\index.ts",
+      "properties": [
+        {
+          "name": "expand",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "styles",
+          "type": "CSSResult[]",
+          "default": "[null]"
+        }
+      ],
+      "events": [
+        {
+          "name": "collapsed"
+        }
+      ]
+    },
+    {
+      "name": "wbl-spinner",
+      "path": "./src\\components\\spinner\\index.ts",
+      "description": "Spinner commonly used to indicate loading",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "wbl-step-through-indicator",
+      "path": "./src\\components\\step-through-indicator\\index.ts",
+      "description": "Indicates progress through a step-locked process, such as a multi-page form",
+      "attributes": [
+        {
+          "name": "activePage",
+          "type": "string | undefined"
+        },
+        {
+          "name": "pages",
+          "type": "string[]",
+          "default": "[]"
+        }
+      ],
+      "properties": [
+        {
+          "name": "activePage",
+          "attribute": "activePage",
+          "type": "string | undefined"
+        },
+        {
+          "name": "pages",
+          "attribute": "pages",
+          "type": "string[]",
+          "default": "[]"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        },
+        {
+          "name": "vars",
+          "type": "(values: { border?: CSSResult | undefined; background?: CSSResult | undefined; ink?: CSSResult | undefined; }) => CSSResult",
+          "default": "\"(values: {\\r\\n    border?: CSSResult;\\r\\n    background?: CSSResult;\\r\\n    ink?: CSSResult;\\r\\n  }) => {\\r\\n    return css`\\r\\n      :host {\\r\\n        ${unsafeCSS(\\r\\n          Object.entries(values)\\r\\n            .map(([key, value]) => {\\r\\n              return `--step-through-${key}: ${value};`;\\r\\n            })\\r\\n            .join(\\\"\\\\n\\\")\\r\\n        )};\\r\\n      }\\r\\n    `;\\r\\n  }\""
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "header",
+          "description": "The header containing the pill boxes"
+        }
+      ]
+    },
+    {
+      "name": "wbl-step-through-nav",
+      "path": "./src\\components\\step-through-nav\\index.ts",
+      "description": "Navigation for the step-through component",
+      "attributes": [
+        {
+          "name": "activeIndex",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "pageCount",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "prevInFlight",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "nextInFlight",
+          "type": "boolean",
+          "default": "true"
+        }
+      ],
+      "properties": [
+        {
+          "name": "activeIndex",
+          "attribute": "activeIndex",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "pageCount",
+          "attribute": "pageCount",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "backwards",
+          "type": "Ref<HTMLButtonElement>",
+          "default": "\"createRef<HTMLButtonElement>()\""
+        },
+        {
+          "name": "forwards",
+          "type": "Ref<HTMLButtonElement>",
+          "default": "\"createRef<HTMLButtonElement>()\""
+        },
+        {
+          "name": "prevInFlight",
+          "attribute": "prevInFlight",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "nextInFlight",
+          "attribute": "nextInFlight",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "events": [
+        {
+          "name": "step-through-prev"
+        },
+        {
+          "name": "step-through-next"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "footer",
+          "description": "The footer"
+        }
+      ]
+    },
+    {
+      "name": "wbl-step-through",
+      "path": "./src\\components\\step-through\\index.ts",
+      "description": "Wraps the step-through-indicator and the step-through-nav",
+      "attributes": [
+        {
+          "name": "activePage",
+          "type": "string | undefined"
+        },
+        {
+          "name": "pages",
+          "type": "string[]",
+          "default": "[]"
+        },
+        {
+          "name": "prevInFlight",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "nextInFlight",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "activePage",
+          "attribute": "activePage",
+          "type": "string | undefined"
+        },
+        {
+          "name": "pages",
+          "attribute": "pages",
+          "type": "string[]",
+          "default": "[]"
+        },
+        {
+          "name": "prevInFlight",
+          "attribute": "prevInFlight",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "nextInFlight",
+          "attribute": "nextInFlight",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "backwards",
+          "type": "Ref<HTMLButtonElement>",
+          "default": "\"createRef<HTMLButtonElement>()\""
+        },
+        {
+          "name": "forwards",
+          "type": "Ref<HTMLButtonElement>",
+          "default": "\"createRef<HTMLButtonElement>()\""
+        },
+        {
+          "name": "minWidth",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Main"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "content",
+          "description": "sits between the indicator and the footer"
+        }
+      ]
+    },
+    {
+      "name": "wbl-tab",
+      "path": "./src\\components\\tab\\index.ts",
+      "description": "Tab, likely to be included in the tabs component",
+      "attributes": [
+        {
+          "name": "active",
+          "type": "boolean | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "active",
+          "attribute": "active",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "EventClick",
+          "type": "string",
+          "default": "\"wbl-tab-click\""
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "wbl-tabs",
+      "path": "./src\\components\\tabs\\index.ts",
+      "description": "Tabs typically containing the tab components along with contents to be included beneath",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Contains the tab components themselves"
+        },
+        {
+          "name": "contents",
+          "description": "The contents beneath the tabs"
+        }
+      ]
+    },
+    {
+      "name": "wbl-theme-colours",
+      "path": "./src\\components\\theme-colours\\index.ts",
+      "attributes": [
+        {
+          "name": "theme",
+          "type": "\"glowworm\" | \"vaillant\" | \"standard\"",
+          "default": "\"standard\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult[][]",
+          "default": "[\"allClassStyles\"]"
+        },
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "type": "\"glowworm\" | \"vaillant\" | \"standard\"",
+          "default": "\"standard\""
+        }
+      ]
+    },
+    {
+      "name": "wbl-theme",
+      "path": "./src\\components\\theme\\index.ts",
+      "description": "Provides css properties for it's ancestors eg colours.",
+      "attributes": [
+        {
+          "name": "theme",
+          "type": "ThemeName",
+          "default": "\"vaillant\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "type": "ThemeName",
+          "default": "\"vaillant\""
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "Main"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "theme",
+          "description": "The Wrapper"
+        }
+      ]
+    },
+    {
+      "name": "demo-footer",
+      "path": "./src\\demos\\footer\\index.ts",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"hostDefaultStyle\",\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "demo-input-gas-safe",
+      "path": "./src\\demos\\input-gas-safe\\index.ts",
+      "description": "DRAFT\r\nWrap an input field and provide error handling and a label",
+      "attributes": [
+        {
+          "name": "gasSafeEndpoint",
+          "type": "string | undefined"
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "showRequired",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "isValid",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "gasSafeEndpoint",
+          "attribute": "gasSafeEndpoint",
+          "type": "string | undefined"
+        },
+        {
+          "name": "isValidated",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "isInvalid",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        },
+        {
+          "name": "required",
+          "attribute": "required",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "showRequired",
+          "attribute": "showRequired",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "setValue",
+          "type": "(detail: ChangeDetail) => void",
+          "default": "\"(detail: ChangeDetail) => {\\r\\n      const { isValid, value } = detail;\\r\\n      this.isValid = isValid;\\r\\n      this.value = value;\\r\\n      this.dispatchChange();\\r\\n    }\""
+        },
+        {
+          "name": "isValid",
+          "attribute": "isValid",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "events": [
+        {
+          "name": "gasSafeVerified"
+        },
+        {
+          "name": "gasSafeCleared"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "div",
+          "description": "The div"
+        }
+      ]
+    },
+    {
+      "name": "demo-installer-card",
+      "path": "./src\\demos\\installer-card\\index.ts",
+      "attributes": [
+        {
+          "name": "selected",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "indicator",
+          "type": "number",
+          "default": "0"
+        }
+      ],
+      "properties": [
+        {
+          "name": "selected",
+          "attribute": "selected",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "attribute": "title",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "indicator",
+          "attribute": "indicator",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ]
+    },
+    {
+      "name": "demo-nav-bar-menu",
+      "path": "./src\\demos\\nav-bar-menu\\index.ts",
+      "description": "The page nav bar\r\nUsage: Sits at the very top of each page",
+      "attributes": [
+        {
+          "name": "silenceEvents",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "containerRef",
+          "type": "Ref<HTMLElement>",
+          "default": "\"createRef<HTMLElement>()\""
+        },
+        {
+          "name": "silenceEvents",
+          "attribute": "silenceEvents",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "isConfined",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "events": [
+        {
+          "name": "menu-confined"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "left",
+          "description": "The left of the header"
+        },
+        {
+          "name": "right",
+          "description": "The right of the header"
+        }
+      ]
+    },
+    {
+      "name": "demo-nav-bar",
+      "path": "./src\\demos\\nav-bar\\index.ts",
+      "description": "The page nav bar\r\nUsage: Sits at the very top of each page",
+      "attributes": [
+        {
+          "name": "page",
+          "type": "\"My Work\" | \"My Rewards\" | undefined"
+        },
+        {
+          "name": "logo",
+          "type": "string | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "page",
+          "attribute": "page",
+          "type": "\"My Work\" | \"My Rewards\" | undefined"
+        },
+        {
+          "name": "logo",
+          "attribute": "logo",
+          "type": "string | undefined"
+        },
+        {
+          "name": "menuConfined",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "left",
+          "description": "The left of the header"
+        },
+        {
+          "name": "right",
+          "description": "The right of the header"
+        }
+      ]
+    },
+    {
+      "name": "demo-side-bar-item",
+      "path": "./src\\demos\\side-bar-item\\index.ts",
+      "description": "The page nav bar\r\nUsage: Sits at the very top of each page",
+      "attributes": [
+        {
+          "name": "onClick",
+          "type": "((e: Element) => void) | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "onClick",
+          "attribute": "onClick",
+          "type": "((e: Element) => void) | undefined"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ]
+    },
+    {
+      "name": "demo-side-bar",
+      "path": "./src\\demos\\side-bar\\index.ts",
+      "description": "The page nav bar\r\nUsage: Sits at the very top of each page",
+      "attributes": [
+        {
+          "name": "menu",
+          "type": "\"my-work\" | \"my-rewards\" | \"my-profile\" | undefined"
+        },
+        {
+          "name": "floating",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "menu",
+          "attribute": "menu",
+          "type": "\"my-work\" | \"my-rewards\" | \"my-profile\" | undefined"
+        },
+        {
+          "name": "floating",
+          "attribute": "floating",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "styles",
+          "type": "(CSSResult | CSSResult[])[]",
+          "default": "[\"allClassStyles\",null]"
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "This element has a slot"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "left",
+          "description": "The left of the header"
+        },
+        {
+          "name": "right",
+          "description": "The right of the header"
+        }
+      ]
+    },
+    {
+      "name": "demo-lib-palette",
+      "path": "./src\\themes\\lib-palette\\index.ts",
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult[] | undefined",
+          "default": "[null]"
+        }
+      ]
+    },
+    {
+      "name": "demo-lib-swatch",
+      "path": "./src\\themes\\lib-swatch\\index.ts",
+      "attributes": [
+        {
+          "name": "name",
+          "type": "string | undefined"
+        },
+        {
+          "name": "color",
+          "type": "string | undefined"
+        },
+        {
+          "name": "ink",
+          "type": "string",
+          "default": "\"black\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": "string | undefined"
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "type": "string | undefined"
+        },
+        {
+          "name": "ink",
+          "attribute": "ink",
+          "type": "string",
+          "default": "\"black\""
+        },
+        {
+          "name": "styles",
+          "type": "CSSResult[] | undefined",
+          "default": "[\"hostDefaultStyle\",null]"
+        }
+      ]
+    }
+  ]
+}
