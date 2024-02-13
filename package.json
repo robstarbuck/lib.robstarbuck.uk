@@ -1,20 +1,20 @@
 {
   "name": "lib-components",
   "private": false,
-  "version": "0.9.39",
+  "version": "0.0.1",
   "type": "module",
-  "main": "dist/lib-components.js",
   "exports": {
-    ".": "./dist/lib-components.js"
+    "mouse-fx": "./dist/mouse-fx.js"
   },
   "types": "types/index.d.ts",
   "files": [
     "dist",
-    "types"
+    "types",
+    "!story"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "eslint \".\\src\\**\\*.ts\" && tsc && vite build && wca analyze \"src/**/index.ts\" --outFile custom-elements.json",
+    "build": "tsc && vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build-manifest": "wca analyze \"src/**/index.ts\" --outFile custom-elements.json"

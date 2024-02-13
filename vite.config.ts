@@ -1,14 +1,19 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/index.ts',
-      formats: ['es']
+      entry: ["src/_exports/mouse-fx"],
+      formats: ["es"],
     },
+
     rollupOptions: {
-      external: /^lit/
-    }
-  }
-})
+      // external: /^lit/,
+      output: {
+        entryFileNames: "[name].js", // Pattern for entry file names
+        chunkFileNames: "chunks/[name].[hash].js", // Pattern for chunk file names
+      },
+    },
+  },
+});

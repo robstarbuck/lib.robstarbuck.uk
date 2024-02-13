@@ -1,0 +1,1 @@
+- [ ] Use the document.querySelector to pick up on elements that need effects
