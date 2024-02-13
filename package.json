@@ -42,5 +42,20 @@
     "vite": "^5.0.12",
     "web-component-analyzer": "^2.0.0-next.4"
   },
-  "customElements": "custom-elements.json"
+  "customElements": "custom-elements.json",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robstarbuck/lib.robstarbuck.uk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robstarbuck/lib.robstarbuck.uk/issues"
+  },
+  "homepage": "https://github.com/robstarbuck/lib.robstarbuck.uk#readme",
+  "description": "",
+  "publishConfig": {
+    "@robstarbuck:registry": "https://npm.pkg.github.com"
+  }
 }
