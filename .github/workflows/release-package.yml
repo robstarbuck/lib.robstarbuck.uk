@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - release-candidate
 
 jobs:
   build:
@@ -28,7 +28,16 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "🤖 GitHub Bot"
+          git config user.email "<>"
+
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git checkout release
+          git add dist
+          git commit -m "Release ${{ github.event.created_at }} | 🤖"
+          git push origin release
