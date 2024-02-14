@@ -34,10 +34,11 @@ jobs:
           git config user.name "🤖 GitHub Bot"
           git config user.email "<>"
 
-      - name: Deploy
-        uses: s0/git-publish-subdir-action@develop
+      - name: Deploy to release branch
+        uses: crazy-max/ghaction-github-pages@v4
+        if: ${{ github.ref == 'refs/heads/release-candidate' }}
+        with:
+          target_branch: release
+          build_dir: ./dist
         env:
-          REPO: self
-          BRANCH: release
-          FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
