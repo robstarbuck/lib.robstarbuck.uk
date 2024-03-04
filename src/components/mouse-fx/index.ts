@@ -38,8 +38,8 @@ export class LibMouseFx extends LitElement {
           0,
           0,
           1,
-          calc(var(--mouse-x, 0) * -0.5),
-          calc(var(--mouse-y, 0) * -0.5)
+          calc(var(--mouse-x, 0) * 0.5),
+          calc(var(--mouse-y, 0) * 0.5)
         );
       }
     `,
@@ -59,7 +59,7 @@ export class LibMouseFx extends LitElement {
     const { [property]: widthOrHeight } = svg.getBoundingClientRect();
     if (this.svgViewPort) {
       const correction = this.svgViewPort[property] / widthOrHeight;
-      return xOrY * correction - widthOrHeight / 2;
+      return (xOrY - widthOrHeight / 2) * correction;
     }
     return xOrY - widthOrHeight / 2;
   };
