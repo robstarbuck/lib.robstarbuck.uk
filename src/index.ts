@@ -1,1 +1,1 @@
-export { LibMouseFx } from "./components/mouse-fx";
+export { LibMouseParallax } from "./components/mouse-parallax";

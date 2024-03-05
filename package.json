@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "exports": {
-    "mouse-fx": "./dist/mouse-fx.js"
+    "mouse-parallax": "./dist/mouse-parallax.js"
   },
   "types": "types/index.d.ts",
   "files": [

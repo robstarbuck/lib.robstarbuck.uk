@@ -1,49 +1,29 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, html } from "lit";
 import {
   customElement,
   property,
   queryAssignedElements,
 } from "lit/decorators.js";
 import { throttle } from "../../utils/throttle";
+import { style } from "./style";
 
-@customElement("lib-mouse-fx")
-export class LibMouseFx extends LitElement {
+@customElement("lib-mouse-parallax")
+export class LibMouseParallax extends LitElement {
   svgViewPort?: { width: number; height: number };
 
-  @property({ type: Number, reflect: true })
-  mouseX = 0;
+  @property({ type: Number })
+  speed = 0.25;
 
-  static styles = [
-    css`
-      :host {
-        display: block;
-        --set-foreground: matrix(
-          1,
-          0,
-          0,
-          1,
-          calc(var(--mouse-x, 0) * 1),
-          calc(var(--mouse-y, 0) * 1)
-        );
-        --set-middleground: matrix(
-          1,
-          0,
-          0,
-          1,
-          calc(var(--mouse-x, 0) * 0.75),
-          calc(var(--mouse-y, 0) * 0.75)
-        );
-        --set-background: matrix(
-          1,
-          0,
-          0,
-          1,
-          calc(var(--mouse-x, 0) * 0.5),
-          calc(var(--mouse-y, 0) * 0.5)
-        );
-      }
-    `,
-  ];
+  @property({ type: String })
+  foreground?: string;
+
+  @property({ type: String })
+  middleground?: string;
+
+  @property({ type: String })
+  background?: string;
+
+  static styles = [style];
 
   @queryAssignedElements({ selector: "svg" })
   svgElements!: Array<Element>;
@@ -88,9 +68,42 @@ export class LibMouseFx extends LitElement {
     this._throttleMove(x, y);
   };
 
+  private setTransform = (elements: NodeListOf<SVGElement>, value: string) => {
+    elements.forEach((e) => {
+      e.style.setProperty("transform", value);
+      e.style.setProperty("transition", "transform 500ms");
+    });
+  };
+
   protected firstUpdated(): void {
     const svg = this.svgElements.at(0);
+
     if (svg instanceof SVGSVGElement) {
+      if (this.foreground || this.middleground || this.background) {
+        this.style.setProperty("--speed", `${this.speed}`);
+      }
+
+      if (this.foreground) {
+        this.setTransform(
+          svg.querySelectorAll(this.foreground),
+          "var(--set-foreground)",
+        );
+      }
+
+      if (this.middleground) {
+        this.setTransform(
+          svg.querySelectorAll(this.middleground),
+          "var(--set-middleground)",
+        );
+      }
+
+      if (this.background) {
+        this.setTransform(
+          svg.querySelectorAll(this.background),
+          "var(--set-background)",
+        );
+      }
+
       this.svgViewPort = svg.viewBox.baseVal;
 
       svg.addEventListener("mouseenter", () => {
@@ -110,6 +123,6 @@ export class LibMouseFx extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "lib-mouse-fx": LibMouseFx;
+    "lib-mouse-parallax": LibMouseParallax;
   }
 }

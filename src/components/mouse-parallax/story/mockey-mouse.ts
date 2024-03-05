@@ -445,25 +445,6 @@ export const mockeyMouse = svg`
         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAC5klEQVQ4jY3Uv6ofVRAH8O935uwmISaxsLCxsfEJ1HeIVbCwUbQVTaVgoaCQMlYx2CoINgER/PMO6hNY2VhYWBiR5GbPzPdrsb97TbxX4oGzyy5nP8yZmT3EGePnD9+iZlGz0VX0bKjbqoZKfv6zOz7rOwDgww+/fPwuVU3Nip4d2ip71o5XW9VStdxqyHrhi69OwSfgr59+wN4qetbQrNFbDW1z6VmprUNVUlWrVG5tbk1LDcMvfvn1CTwA4LfPb7C3ipCH7RXWOStWd65sLUwlmyDZJDeT90neB/nAcAE4AeP3OzfJTMbI5MglRq7MPBeZ52PEhRhxgRkXmfEEIy4z+CSDVxC8hOB5BscPr16LE5ARiBERIyOWzBiZsRzmyIgxIkYGRy7MOM+MiwxeZvASgxfJWEnGj69dIwAMBsFMhEHbgA3vl7bdBsJ2whbsgDFgUIBBlOlJo2AKgAczEDL21SkADWDCIHwoms39dvIuQKxuXjB1ZOEIcP30xssejAAGHDsUAOeh+juyx3sMH/fGwESIHGguDA8bQbL3LTukAQRRu+NH+vPf/XoyQnR0Wk7atMlx5ep1//n9bQZgAb2XK0/3qw/xHgdJBqulICDDEmwjAODy1bfNpBlhZipGdoysWHLGMmYsY8t1mbksM9cxc11mrGPGOiqX0bEMxxiIkY9u5e53n9ASLYVbqeqh2UOzFs1ee5tLb7X0NpfD7zhdfU+tv9y6Z6lO5eYf1OHqVB+jvfbcQW01NAuaPdV9/4A+cHefmewdNd0dOkTq6kWzlt5q9Kz0LPTs6e4jzT5Saz730W3FWeCVl66bQTNDkbHncxzyuY4t1/EglnGU63IUy9hiyY4R/u92eDjS3nOqVmr2UFWomp6lnipVVc/qZ9+5+XgQAO5+e4uWKSlcHdonXC2V1LP0zJs3dLz+seAxKpmupiUcQKvtp19//5FD9n+BAPDHN7cICZLgFtyNp15579SJ/Td/4jkv9oIhpgAAAABJRU5ErkJggg=="
       />
     </defs>
-    <style>
-      #title-backing,
-      #title,
-      #mockey-mouse,
-      #frame {
-        transition: transform 500ms;
-      }
-      #title-backing{
-        transform: var(--set-background);
-      }
-      #title{
-        transform: var(--set-middleground);
-      }
-      #mockey-mouse {
-        transform: var(--set-foreground);
-      }
-      #frame{
-        transform: var(--set-background);
-      }
-  </style>
+
   </svg>
 `;

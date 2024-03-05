@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   build: {
     lib: {
-      entry: ["src/_exports/mouse-fx"],
+      entry: ["src/_exports/mouse-parallax"],
       formats: ["es"],
     },
 
