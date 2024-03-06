@@ -9,8 +9,6 @@ import { style } from "./style";
 
 @customElement("lib-mouse-parallax")
 export class LibMouseParallax extends LitElement {
-  svgViewPort?: { width: number; height: number };
-
   @property({ type: Number })
   speed = 0.25;
 
@@ -23,10 +21,12 @@ export class LibMouseParallax extends LitElement {
   @property({ type: String })
   background?: string;
 
+  @queryAssignedElements({ selector: "svg" })
+  svgElements!: Array<SVGSVGElement>;
+
   static styles = [style];
 
-  @queryAssignedElements({ selector: "svg" })
-  svgElements!: Array<Element>;
+  svgViewPort?: { width: number; height: number };
 
   private _calculateTransform = (
     property: "width" | "height",
@@ -64,14 +64,16 @@ export class LibMouseParallax extends LitElement {
   private _handleMouseMove = (e: MouseEvent) => {
     const x = this._calculateXTransform(e.offsetX);
     const y = this._calculateYTransform(e.offsetY);
-
     this._throttleMove(x, y);
   };
 
   private setTransform = (elements: NodeListOf<SVGElement>, value: string) => {
     elements.forEach((e) => {
-      e.style.setProperty("transform", value);
-      e.style.setProperty("transition", "transform 500ms");
+      // Avoid distorting the svg, only set transform where absent
+      if (window.getComputedStyle(e).transform === "none") {
+        e.style.setProperty("transform", value);
+        e.style.setProperty("transition", "transform 500ms");
+      }
     });
   };
 
@@ -79,6 +81,8 @@ export class LibMouseParallax extends LitElement {
     const svg = this.svgElements.at(0);
 
     if (svg instanceof SVGSVGElement) {
+      this.svgViewPort = svg.viewBox.baseVal;
+
       if (this.foreground || this.middleground || this.background) {
         this.style.setProperty("--speed", `${this.speed}`);
       }
@@ -103,8 +107,6 @@ export class LibMouseParallax extends LitElement {
           "var(--set-background)",
         );
       }
-
-      this.svgViewPort = svg.viewBox.baseVal;
 
       svg.addEventListener("mouseenter", () => {
         svg.addEventListener("mousemove", this._handleMouseMove);
