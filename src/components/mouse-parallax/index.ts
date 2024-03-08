@@ -108,13 +108,9 @@ export class LibMouseParallax extends LitElement {
         );
       }
 
-      svg.addEventListener("mouseenter", () => {
-        svg.addEventListener("mousemove", this._handleMouseMove);
-      });
-      svg.addEventListener("mouseleave", () => {
-        svg.removeEventListener("mousemove", this._handleMouseMove);
-        this._resetPosition();
-      });
+      svg.addEventListener("mousemove", this._handleMouseMove);
+
+      svg.addEventListener("mouseleave", this._resetPosition);
     }
   }
 
