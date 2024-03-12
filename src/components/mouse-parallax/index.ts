@@ -72,8 +72,12 @@ export class LibMouseParallax extends LitElement {
     this.style.setProperty("--mouse-y", `${y}`);
   };
 
+  private isTouchEvent = (e: MouseEvent | TouchEvent): e is TouchEvent => {
+    return "TouchEvent" in window && e instanceof TouchEvent;
+  };
+
   private _eventXY = (e: MouseEvent | TouchEvent) => {
-    if (e instanceof TouchEvent) {
+    if (this.isTouchEvent(e)) {
       return { x: e.touches[0].clientX, y: e.touches[0].clientY };
     }
     return { x: e.offsetX, y: e.offsetY };
@@ -90,6 +94,7 @@ export class LibMouseParallax extends LitElement {
     const easedY = y * this.easing;
 
     this.easing = this.easing < 1 ? this.easing + 0.1 : 1;
+    console.log("move");
     this._Move(easedX, easedY);
   };
 
