@@ -27,7 +27,7 @@ export class LibMouseParallax extends LitElement {
 
   svgViewPort?: { width: number; height: number };
 
-  blend = 0;
+  easing = 0;
 
   private _calculateTransform = (
     property: "width" | "height",
@@ -53,7 +53,7 @@ export class LibMouseParallax extends LitElement {
     return this._calculateTransform("height", x);
   };
 
-  private _removeTransition = () => {
+  private _preventTransition = () => {
     this.style.setProperty("--animation", "none");
   };
 
@@ -62,7 +62,7 @@ export class LibMouseParallax extends LitElement {
   };
 
   private _resetPosition = () => {
-    this.blend = 0;
+    this.easing = 0;
     this._addTransition();
     this._Move(0, 0);
   };
@@ -85,11 +85,12 @@ export class LibMouseParallax extends LitElement {
     const x = this._calculateXTransform(eventX);
     const y = this._calculateYTransform(eventY);
 
-    const blendedX = x * this.blend;
-    const blendedY = y * this.blend;
+    // Ease in the movement, prevents positions snapping
+    const easedX = x * this.easing;
+    const easedY = y * this.easing;
 
-    this.blend = this.blend < 1 ? this.blend + 0.1 : 1;
-    this._Move(blendedX, blendedY);
+    this.easing = this.easing < 1 ? this.easing + 0.1 : 1;
+    this._Move(easedX, easedY);
   };
 
   private setTransform = (elements: NodeListOf<SVGElement>, value: string) => {
@@ -134,12 +135,12 @@ export class LibMouseParallax extends LitElement {
       }
 
       // Mouse Events
-      svg.addEventListener("mouseenter", this._removeTransition);
+      svg.addEventListener("mouseenter", this._preventTransition);
       svg.addEventListener("mousemove", this._handleMove);
       svg.addEventListener("mouseleave", this._resetPosition);
 
       // Touch Events
-      svg.addEventListener("touchstart", this._removeTransition);
+      svg.addEventListener("touchstart", this._preventTransition);
       svg.addEventListener("touchmove", this._handleMove);
       svg.addEventListener("touchend", this._resetPosition);
     }
