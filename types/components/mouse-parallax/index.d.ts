@@ -1,15 +1,15 @@
 import { LitElement } from "lit";
 export declare class LibMouseParallax extends LitElement {
-    svgViewPort?: {
-        width: number;
-        height: number;
-    };
     speed: number;
     foreground?: string;
     middleground?: string;
     background?: string;
+    svgElements: Array<SVGSVGElement>;
     static styles: import("lit").CSSResult[];
-    svgElements: Array<Element>;
+    svgViewPort?: {
+        width: number;
+        height: number;
+    };
     private _calculateTransform;
     private _calculateXTransform;
     private _calculateYTransform;

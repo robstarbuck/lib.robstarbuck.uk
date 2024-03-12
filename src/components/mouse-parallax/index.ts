@@ -4,7 +4,6 @@ import {
   property,
   queryAssignedElements,
 } from "lit/decorators.js";
-import { throttle } from "../../utils/throttle";
 import { style } from "./style";
 
 @customElement("lib-mouse-parallax")
@@ -27,6 +26,8 @@ export class LibMouseParallax extends LitElement {
   static styles = [style];
 
   svgViewPort?: { width: number; height: number };
+
+  blend = 0;
 
   private _calculateTransform = (
     property: "width" | "height",
@@ -52,19 +53,43 @@ export class LibMouseParallax extends LitElement {
     return this._calculateTransform("height", x);
   };
 
-  private _resetPosition = () => {
-    this._throttleMove(0, 0);
+  private _removeTransition = () => {
+    this.style.setProperty("--animation", "none");
   };
 
-  private _throttleMove = throttle((x: number, y: number) => {
+  private _addTransition = () => {
+    this.style.setProperty("--animation", "transform 500ms");
+  };
+
+  private _resetPosition = () => {
+    this.blend = 0;
+    this._addTransition();
+    this._Move(0, 0);
+  };
+
+  private _Move = (x: number, y: number) => {
     this.style.setProperty("--mouse-x", `${x}`);
     this.style.setProperty("--mouse-y", `${y}`);
-  }, 125);
+  };
 
-  private _handleMouseMove = (e: MouseEvent) => {
-    const x = this._calculateXTransform(e.offsetX);
-    const y = this._calculateYTransform(e.offsetY);
-    this._throttleMove(x, y);
+  private _eventXY = (e: MouseEvent | TouchEvent) => {
+    if (e instanceof TouchEvent) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.offsetX, y: e.offsetY };
+  };
+
+  private _handleMove = (e: MouseEvent | TouchEvent) => {
+    const { x: eventX, y: eventY } = this._eventXY(e);
+
+    const x = this._calculateXTransform(eventX);
+    const y = this._calculateYTransform(eventY);
+
+    const blendedX = x * this.blend;
+    const blendedY = y * this.blend;
+
+    this.blend = this.blend < 1 ? this.blend + 0.1 : 1;
+    this._Move(blendedX, blendedY);
   };
 
   private setTransform = (elements: NodeListOf<SVGElement>, value: string) => {
@@ -72,7 +97,7 @@ export class LibMouseParallax extends LitElement {
       // Avoid distorting the svg, only set transform where absent
       if (window.getComputedStyle(e).transform === "none") {
         e.style.setProperty("transform", value);
-        e.style.setProperty("transition", "transform 500ms");
+        e.style.setProperty("transition", "var(--animation)");
       }
     });
   };
@@ -108,13 +133,15 @@ export class LibMouseParallax extends LitElement {
         );
       }
 
-      svg.addEventListener("mouseenter", () => {
-        svg.addEventListener("mousemove", this._handleMouseMove);
-      });
-      svg.addEventListener("mouseleave", () => {
-        svg.removeEventListener("mousemove", this._handleMouseMove);
-        this._resetPosition();
-      });
+      // Mouse Events
+      svg.addEventListener("mouseenter", this._removeTransition);
+      svg.addEventListener("mousemove", this._handleMove);
+      svg.addEventListener("mouseleave", this._resetPosition);
+
+      // Touch Events
+      svg.addEventListener("touchstart", this._removeTransition);
+      svg.addEventListener("touchmove", this._handleMove);
+      svg.addEventListener("touchend", this._resetPosition);
     }
   }
 
