@@ -94,7 +94,6 @@ export class LibMouseParallax extends LitElement {
     const easedY = y * this.easing;
 
     this.easing = this.easing < 1 ? this.easing + 0.1 : 1;
-    console.log("move");
     this._Move(easedX, easedY);
   };
 
