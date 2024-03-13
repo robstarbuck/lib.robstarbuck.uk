@@ -19,7 +19,6 @@ export const Card: Story = {
   render: () => {
     return html`
       <lib-mouse-parallax
-        style="margin-top:50vh;"
         speed="0.1"
         foreground="#mockey-mouse"
         middleground="#title"
