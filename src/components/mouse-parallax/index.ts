@@ -78,7 +78,16 @@ export class LibMouseParallax extends LitElement {
 
   private _eventXY = (e: MouseEvent | TouchEvent) => {
     if (this.isTouchEvent(e)) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      const { clientX, clientY } = e.touches[0];
+      if (e.target instanceof SVGElement) {
+        const svg = e.target.closest("svg");
+        if (svg) {
+          // Corrects x and y relative to page position
+          const { top, left } = svg.getBoundingClientRect();
+          return { x: clientX - left, y: clientY - top };
+        }
+      }
+      return { x: clientX, y: clientY };
     }
     return { x: e.offsetX, y: e.offsetY };
   };
